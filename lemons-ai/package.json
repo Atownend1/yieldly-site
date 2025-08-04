@@ -1,0 +1,38 @@
+{
+  "name": "lemons-ai",
+  "version": "1.0.0",
+  "description": "Yieldly - Transforming complexity into clarity through design, data, and engineering",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "serve": "python3 -m http.server 8000",
+    "deploy": "netlify deploy --prod --dir=.",
+    "build": "echo 'Static site - no build required'"
+  },
+  "keywords": [
+    "yieldly",
+    "design",
+    "data",
+    "engineering",
+    "consulting",
+    "website",
+    "static"
+  ],
+  "author": "Yieldly Team",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/lemons-ai.git"
+  },
+  "homepage": "https://lemons-ai.netlify.app",
+  "devDependencies": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
