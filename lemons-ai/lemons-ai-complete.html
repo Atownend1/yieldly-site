@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yieldly — Unlock Value</title>
+  <meta name="description" content="Yieldly transforms complexity into clarity—unlocking measurable value with design, data, and engineering." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+:root{
+  --bg-0:#0b0e16; --bg-1:#0f1322; --bg-2:#12172a;
+  --acc-1:#7c9cff; --acc-2:#4ef0d9; --acc-3:#b58cff;
+  --text:#e8ecf8; --muted:#a8b0c7; --glass:rgba(255,255,255,.06);
+  --card:rgba(255,255,255,.04); --stroke:rgba(255,255,255,.08);
+  --radius:14px; --shadow:0 20px 60px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box} html,body{height:100%}
+body{
+  margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--text); background:radial-gradient(1200px 800px at 75% -10%, rgba(193,170,255,.18), transparent 60%),
+             radial-gradient(900px 600px at 15% -20%, rgba(87,179,255,.18), transparent 55%),
+             linear-gradient(180deg, var(--bg-0), var(--bg-2));
+  background-attachment: fixed;
+}
+.container{width:min(1120px, 92%); margin:auto}
+
+/* Utility Classes */
+.hidden { display: none !important; }
+
+/* Header */
+.site-header{position:fixed; top:0; left:0; right:0; z-index:20; backdrop-filter:saturate(140%) blur(10px); background:linear-gradient(180deg, rgba(11,14,22,.65), rgba(11,14,22,0)); border-bottom:1px solid var(--stroke)}
+.nav{display:flex; align-items:center; gap:24px; padding:14px 0}
+.brand{display:flex; align-items:center; gap:10px; color:var(--text); text-decoration:none; font-weight:700; letter-spacing:.2px}
+.brand-mark{display:inline-grid; place-items:center; width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg, var(--acc-1), var(--acc-2)); color:#0b0e16; font-weight:800}
+.brand-text{font-weight:700}
+.nav-links{margin-left:auto; display:flex; gap:22px}
+.nav-links a{color:var(--muted); text-decoration:none}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{display:flex; gap:10px}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 16px; border-radius:999px; text-decoration:none; font-weight:600; border:1px solid transparent}
+.btn--primary{background:linear-gradient(135deg, var(--acc-1), var(--acc-2)); color:#0b0e16; box-shadow:0 8px 30px rgba(76,201,240,.25)}
+.btn--primary:hover{filter:brightness(1.05)}
+.btn--ghost{background:transparent; color:var(--text); border-color:var(--stroke)}
+.nav-toggle{display:none; background:none; border:0; margin-left:8px; cursor:pointer}
+.nav-toggle span{display:block; width:22px; height:2px; background:var(--text); margin:5px 0; border-radius:2px}
+
+/* Hero */
+.hero{position:relative; padding-top:120px; min-height:92vh; display:grid; place-items:center; text-align:center; overflow:hidden}
+.hero-bg{position:absolute; inset:0; pointer-events:none}
+#lightRays{position:absolute; inset:0; width:100%; height:100%; opacity:.7}
+.hero h1{font-size:clamp(36px,6vw,64px); line-height:1.05; margin:0 0 14px}
+.hero p{color:var(--muted); max-width:720px; margin:0 auto 22px; font-size:clamp(16px,2.2vw,18px)}
+.hero-actions{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+.scroll-cue{position:absolute; bottom:18px; left:50%; transform:translateX(-50%); color:var(--muted); text-decoration:none; font-size:24px}
+
+/* Sections */
+.section{padding:84px 0}
+.section--alt{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,0))}
+.section h2{font-size:clamp(26px,3.8vw,36px); margin:0 0 8px; text-align:center}
+.section-lead{color:var(--muted); text-align:center; max-width:800px; margin:0 auto 40px}
+
+/* Work Grid */
+.work-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:24px; margin-top:40px}
+.work-item{background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); overflow:hidden; transition:transform 0.3s ease}
+.work-item:hover{transform:translateY(-4px)}
+.work-media{height:200px; background:linear-gradient(135deg, #2b2f44, #1a1f35); display:grid; place-items:center; color:var(--muted)}
+.work-content{padding:20px}
+.work-content h3{margin:0 0 8px; color:var(--text)}
+.work-content p{color:var(--muted); margin:0 0 12px; font-size:14px; line-height:1.5}
+.link-arrow{color:var(--acc-1); text-decoration:none; font-size:14px}
+
+/* Services Grid */
+.services-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:24px; margin-top:40px}
+.service-card{background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); padding:24px; text-align:center; transition:transform 0.3s ease}
+.service-card:hover{transform:translateY(-4px)}
+.service-icon{font-size:48px; margin-bottom:16px}
+.service-card h3{margin:0 0 12px; color:var(--text)}
+.service-card p{color:var(--muted); font-size:14px; line-height:1.5; margin:0}
+
+/* About */
+.about-content{display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center}
+.about-text{max-width:500px}
+.about-text h2{text-align:left; margin-bottom:20px}
+.about-text p{color:var(--muted); line-height:1.6; margin-bottom:16px}
+.stats{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-top:32px}
+.stat{background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); padding:20px; text-align:center}
+.stat-number{font-size:28px; font-weight:800; background:linear-gradient(135deg, var(--acc-1), var(--acc-2)); -webkit-background-clip:text; background-clip:text; color:transparent; margin-bottom:4px}
+.stat-label{color:var(--muted); font-size:12px}
+.about-visual{display:grid; place-items:center; color:var(--muted); background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); height:300px}
+
+/* Contact */
+.contact-content{display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start}
+.contact-info h2{text-align:left; margin-bottom:16px}
+.contact-info p{color:var(--muted); margin-bottom:32px}
+.contact-methods{display:grid; gap:16px}
+.contact-method{background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); padding:16px}
+.contact-method strong{color:var(--text); display:block; margin-bottom:4px}
+.contact-method a{color:var(--acc-1); text-decoration:none}
+.contact-form{background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); padding:24px}
+.contact-form h3{margin:0 0 20px; color:var(--text)}
+.form-group{margin-bottom:16px}
+.form-group label{display:block; color:var(--muted); font-size:14px; margin-bottom:6px}
+.form-group input, .form-group textarea{
+  width:100%; padding:12px 14px; border-radius:10px; background:#0f1322; border:1px solid var(--stroke); color:var(--text); font-family:inherit
+}
+.form-group input:focus, .form-group textarea:focus{outline:none; border-color:var(--acc-1)}
+
+/* Footer */
+.site-footer{border-top:1px solid var(--stroke); padding:40px 0; background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.25))}
+.footer-content{display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; margin-bottom:32px}
+.footer-brand p{color:var(--muted); margin:8px 0 0}
+.footer-nav h4{color:var(--text); margin:0 0 16px; font-size:16px}
+.footer-nav ul{list-style:none; padding:0; margin:0}
+.footer-nav ul li{margin-bottom:8px}
+.footer-nav ul li a{color:var(--muted); text-decoration:none; font-size:14px}
+.footer-nav ul li a:hover{color:var(--text)}
+.footer-contact h4{color:var(--text); margin:0 0 16px; font-size:16px}
+.footer-contact a{color:var(--acc-1); text-decoration:none; display:block; margin-bottom:8px; font-size:14px}
+.footer-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:24px; border-top:1px solid var(--stroke)}
+.footer-bottom p{color:var(--muted); margin:0; font-size:14px}
+.footer-legal{display:flex; gap:20px}
+.footer-legal a{color:var(--muted); text-decoration:none; font-size:14px}
+
+/* Responsive */
+@media (max-width: 960px){
+  .nav-links, .nav-cta{display:none}
+  .nav-toggle{display:block}
+  .about-content, .contact-content, .footer-content{grid-template-columns:1fr}
+  .hero-actions{flex-direction:column; align-items:center}
+  .stats{grid-template-columns:1fr}
+}
+
+@media (max-width: 600px){
+  .work-grid, .services-grid{grid-template-columns:1fr}
+  .footer-content{grid-template-columns:1fr; text-align:center}
+  .footer-bottom{flex-direction:column; gap:16px; text-align:center}
+}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#hero" aria-label="Yieldly home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+        <span class="brand-text">Yieldly</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn--ghost" href="#contact">Contact</a>
+        <a class="btn btn--primary" href="#demo">Request a demo</a>
+      </div>
+      <button class="nav-toggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="hero" class="hero" aria-label="Unlock your potential">
+      <div class="hero-bg">
+        <canvas id="lightRays" aria-hidden="true"></canvas>
+      </div>
+      <div class="container hero-content">
+        <h1>Unlock your potential</h1>
+        <p>We transform complexity into clarity—turning tangled systems into elegant outcomes that unlock measurable value.</p>
+        <div class="hero-actions">
+          <a class="btn btn--primary" href="#demo">Request a demo</a>
+          <a class="btn btn--ghost" href="#work">See our work</a>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#work" aria-label="Scroll to Work">↓</a>
+    </section>
+
+    <!-- WORK -->
+    <section id="work" class="section section--alt">
+      <div class="container">
+        <h2>Our work</h2>
+        <p class="section-lead">We've helped organizations across industries unlock their potential through strategic design, data insights, and engineering excellence.</p>
+        
+        <div class="work-grid">
+          <article class="work-item">
+            <div class="work-media">
+              <span>📊 Dashboard Preview</span>
+            </div>
+            <div class="work-content">
+              <h3>Strategic Transformation</h3>
+              <p>Streamlined complex workflows, reducing operational overhead by 40% while improving customer satisfaction.</p>
+              <a href="#case-study-1" class="link-arrow">View case study →</a>
+            </div>
+          </article>
+          
+          <article class="work-item">
+            <div class="work-media">
+              <span>🔍 Data Visualization</span>
+            </div>
+            <div class="work-content">
+              <h3>Data Intelligence</h3>
+              <p>Built predictive analytics platform that increased forecasting accuracy by 60% and reduced decision time.</p>
+              <a href="#case-study-2" class="link-arrow">View case study →</a>
+            </div>
+          </article>
+          
+          <article class="work-item">
+            <div class="work-media">
+              <span>🎨 Product Design</span>
+            </div>
+            <div class="work-content">
+              <h3>Product Innovation</h3>
+              <p>Redesigned user experience leading to 3x user engagement and 50% reduction in support tickets.</p>
+              <a href="#case-study-3" class="link-arrow">View case study →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section">
+      <div class="container">
+        <h2>Our services</h2>
+        <p class="section-lead">From strategy to execution, we deliver end-to-end solutions that drive meaningful results.</p>
+        
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">🎯</div>
+            <h3>Strategic Design</h3>
+            <p>Transform complex challenges into clear, actionable strategies that align with your business goals.</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">📊</div>
+            <h3>Data & Analytics</h3>
+            <p>Turn raw data into valuable insights that inform decisions and drive growth.</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">⚙️</div>
+            <h3>Engineering</h3>
+            <p>Build robust, scalable solutions that stand the test of time and scale with your business.</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">🚀</div>
+            <h3>Innovation</h3>
+            <p>Explore new possibilities and implement cutting-edge technologies that give you a competitive edge.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section section--alt">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-text">
+            <h2>About Yieldly</h2>
+            <p>We believe that every complex problem has an elegant solution waiting to be discovered. Our team combines deep expertise in design, data science, and engineering to unlock value that others miss.</p>
+            <p>Founded on the principle that clarity drives results, we've helped organizations across industries transform their most challenging obstacles into their greatest opportunities.</p>
+            <div class="stats">
+              <div class="stat">
+                <div class="stat-number">150+</div>
+                <div class="stat-label">Projects Completed</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Client Satisfaction</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number">3.5x</div>
+                <div class="stat-label">Average ROI</div>
+              </div>
+            </div>
+          </div>
+          <div class="about-visual">
+            <span>👥 Our Team</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="contact-content">
+          <div class="contact-info">
+            <h2>Ready to unlock your potential?</h2>
+            <p>Let's discuss how we can transform your challenges into opportunities.</p>
+            
+            <div class="contact-methods">
+              <div class="contact-method">
+                <strong>Email</strong>
+                <a href="mailto:hello@yieldly.co">hello@yieldly.co</a>
+              </div>
+              <div class="contact-method">
+                <strong>Phone</strong>
+                <a href="tel:+1234567890">+1 (234) 567-890</a>
+              </div>
+              <div class="contact-method">
+                <strong>Location</strong>
+                <span>San Francisco, CA</span>
+              </div>
+            </div>
+          </div>
+          
+          <form class="contact-form" id="demo" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact" />
+            <p class="hidden">
+              <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+            </p>
+            <h3>Request a demo</h3>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="company">Company</label>
+              <input type="text" id="company" name="company">
+            </div>
+            <div class="form-group">
+              <label for="message">Tell us about your challenge</label>
+              <textarea id="message" name="message" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary">Send message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="#hero" class="brand">
+            <span class="brand-mark">Y</span>
+            <span class="brand-text">Yieldly</span>
+          </a>
+          <p>Transforming complexity into clarity.</p>
+        </div>
+        
+        <nav class="footer-nav">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">Strategic Design</a></li>
+            <li><a href="#services">Data & Analytics</a></li>
+            <li><a href="#services">Engineering</a></li>
+            <li><a href="#services">Innovation</a></li>
+          </ul>
+        </nav>
+        
+        <nav class="footer-nav">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        
+        <div class="footer-contact">
+          <h4>Get in touch</h4>
+          <a href="mailto:hello@yieldly.co">hello@yieldly.co</a>
+          <a href="tel:+1234567890">+1 (234) 567-890</a>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; <span id="year">2024</span> Yieldly. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#privacy">Privacy Policy</a>
+          <a href="#terms">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+// Year in footer
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Simple mobile nav toggle
+const toggle = document.querySelector('.nav-toggle');
+const links = document.querySelector('.nav-links');
+const cta = document.querySelector('.nav-cta');
+toggle?.addEventListener('click', () => {
+  const open = links.style.display === 'flex';
+  links.style.display = open ? 'none' : 'flex';
+  cta.style.display = open ? 'none' : 'flex';
+});
+
+// Animated light rays on canvas
+const c = document.getElementById('lightRays');
+if (c) {
+  const ctx = c.getContext('2d', { alpha: true });
+
+  function resize() {
+    c.width = c.clientWidth;
+    c.height = c.clientHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  let t = 0;
+  function draw() {
+    t += 0.005;
+    ctx.clearRect(0,0,c.width,c.height);
+
+    // background glow
+    const g = ctx.createRadialGradient(c.width*0.8, c.height*0.0, 50, c.width*0.8, c.height*0.0, c.width*0.9);
+    g.addColorStop(0, 'rgba(180,160,255,0.25)');
+    g.addColorStop(1, 'rgba(180,160,255,0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0,0,c.width,c.height);
+
+    // rays
+    const rays = 6;
+    for (let i=0;i<rays;i++){
+      const base = (-0.6 + i*0.08);
+      const angle = base + Math.sin(t + i)*0.01;
+      const x0 = c.width*0.75;
+      const y0 = -c.height*0.1;
+      const len = c.height*1.4;
+      ctx.save();
+      ctx.translate(x0, y0);
+      ctx.rotate(angle);
+      const w = c.width*0.02 + Math.sin(t*2+i)*2;
+      const grad = ctx.createLinearGradient(0,0,0,len);
+      grad.addColorStop(0, 'rgba(255,255,255,0.18)');
+      grad.addColorStop(0.3,'rgba(200,200,255,0.08)');
+      grad.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.moveTo(-w,0);
+      ctx.lineTo(w,0);
+      ctx.lineTo(w*4,len);
+      ctx.lineTo(-w*4,len);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+// Smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+  </script>
+</body>
+</html>
