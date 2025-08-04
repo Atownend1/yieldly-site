@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yieldly - Revenue Optimisation & Finance Modernisation</title>
+    <meta name="description" content="Yieldly finds £138m in hidden revenue with data and process optimisation. Specialists in revenue optimisation, write off reduction, and lock up solutions.">
+    <meta name="keywords" content="revenue optimisation, write off reduction, lock up solutions, finance modernisation, legal services, UK law firms, cash flow optimisation">
+    <meta name="author" content="Yieldly">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Yieldly - Revenue Optimisation & Finance Modernisation">
+    <meta property="og:description" content="Yieldly finds £138m in hidden revenue with data and process optimisation. We are Legal.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yieldly.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Yieldly - Revenue Optimisation & Finance Modernisation">
+    <meta name="twitter:description" content="Yieldly finds £138m in hidden revenue with data and process optimisation. We are Legal.">
+    <link rel="canonical" href="https://yieldly.com">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="website-styles.css" rel="stylesheet">
+    
+    <!-- Google Analytics (Replace GA_MEASUREMENT_ID with your actual ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Yield<span class="logo-x">ly</span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#approach" class="nav-link">Approach</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><button id="darkModeToggle" class="nav-link theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Yieldly finds <span class="gradient-text">£138m</span><br>
+                    in hidden revenue
+                </h1>
+                <p class="hero-subtitle">
+                    With data and process optimisation
+                </p>
+                <p class="hero-tagline">
+                    Yieldly, We are legal.
+                </p>
+                <p class="hero-description">
+                    We bridge execution gaps in enterprise transformation with our data-first approach. 
+                    We are Legal.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Transform with Confidence</a>
+                    <a href="#assessment" class="btn btn-secondary" id="assessmentBtn">Lock Up Improvement Assessment</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assessment Modal -->
+    <div id="assessmentModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Lock Up Improvement Assessment</h2>
+            <p>Complete this assessment to receive your personalised report on improving your lock up performance.</p>
+            
+            <form id="assessmentForm">
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="invoiceDays">How many days to invoice?</label>
+                    <select id="invoiceDays" name="invoiceDays" required>
+                        <option value="">Select an option</option>
+                        <option value="0-7">0-7 days</option>
+                        <option value="8-14">8-14 days</option>
+                        <option value="15-21">15-21 days</option>
+                        <option value="22-30">22-30 days</option>
+                        <option value="30+">30+ days</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="hoursBilled">How many hours billed per month?</label>
+                    <select id="hoursBilled" name="hoursBilled" required>
+                        <option value="">Select an option</option>
+                        <option value="0-100">0-100 hours</option>
+                        <option value="101-500">101-500 hours</option>
+                        <option value="501-1000">501-1000 hours</option>
+                        <option value="1001-2000">1001-2000 hours</option>
+                        <option value="2000+">2000+ hours</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cases">How many cases do you handle?</label>
+                    <select id="cases" name="cases" required>
+                        <option value="">Select an option</option>
+                        <option value="1-10">1-10 cases</option>
+                        <option value="11-50">11-50 cases</option>
+                        <option value="51-100">51-100 cases</option>
+                        <option value="101-500">101-500 cases</option>
+                        <option value="500+">500+ cases</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="utilisation">Current utilisation rate?</label>
+                    <select id="utilisation" name="utilisation" required>
+                        <option value="">Select an option</option>
+                        <option value="0-25">0-25%</option>
+                        <option value="26-50">26-50%</option>
+                        <option value="51-75">51-75%</option>
+                        <option value="76-90">76-90%</option>
+                        <option value="90+">90%+</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Get My Report</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Beyond Traditional Consulting</h2>
+                <p>Yieldly is a data-first company that bridges execution gaps in enterprise transformation.</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Outcome-Obsessed</h3>
+                    <p>We don't just analyze - we execute. Every engagement is measured by real business outcomes, not just deliverables.</p>
+                </div>
+                <div class="about-card">
+                    <div class="card-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Platform-Agnostic</h3>
+                    <p>While we're technology-literate, we're not tied to any single platform. We choose the right tools for your specific needs.</p>
+                </div>
+                <div class="about-card">
+                    <div class="card-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Execution-First</h3>
+                    <p>Most firms stop at PowerPoint. We go beyond strategy to implementation, ensuring your transformation actually happens.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Comprehensive Service Portfolio</h2>
+                <p>From revenue optimisation to AI integration, we provide end-to-end finance transformation solutions.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Revenue Optimisation</h3>
+                    <p>We identify and unlock hidden revenue opportunities through data analysis and process optimisation.</p>
+                    <ul class="service-features">
+                        <li>Revenue Leakage Analysis</li>
+                        <li>Process Optimisation</li>
+                        <li>Performance Benchmarking</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3>Write Off Reduction</h3>
+                    <p>We help reduce write-offs through improved billing processes and better client management.</p>
+                    <ul class="service-features">
+                        <li>Billing Process Review</li>
+                        <li>Client Communication</li>
+                        <li>Dispute Resolution</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Lock Up Solutions</h3>
+                    <p>We improve your lock up performance by optimising the time between work completion and cash collection.</p>
+                    <ul class="service-features">
+                        <li>Lock Up Analysis</li>
+                        <li>Cash Flow Optimisation</li>
+                        <li>Collection Strategies</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI Integration</h3>
+                    <p>We embed AI thinking into delivery, identifying repeatable use cases and building AI readiness as we go.</p>
+                    <ul class="service-features">
+                        <li>AI Readiness Assessment</li>
+                        <li>Use Case Identification</li>
+                        <li>AI Implementation</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Finance Modernisation</h3>
+                    <p>We modernise your finance function with the latest technology and best practices.</p>
+                    <ul class="service-features">
+                        <li>Technology Assessment</li>
+                        <li>Process Modernisation</li>
+                        <li>Digital Transformation</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Operation Maturity</h3>
+                    <p>We help mature your operations through improved processes, systems, and governance.</p>
+                    <ul class="service-features">
+                        <li>Maturity Assessment</li>
+                        <li>Process Improvement</li>
+                        <li>Governance Framework</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approach Section -->
+    <section id="approach" class="approach">
+        <div class="container">
+            <div class="section-header">
+                <h2>Bridging the Execution Gap</h2>
+                <p>Our three-pillar approach addresses the biggest challenges in enterprise transformation.</p>
+            </div>
+            <div class="approach-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">01</div>
+                    <div class="timeline-content">
+                        <h3>Foundations</h3>
+                        <p>We start with data assessment and strategy, building the solid foundation your transformation needs.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">02</div>
+                    <div class="timeline-content">
+                        <h3>Speed</h3>
+                        <p>We deploy Yieldly Technology in weeks, not months, with rapid implementation and process optimisation.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">03</div>
+                    <div class="timeline-content">
+                        <h3>Future-proofing</h3>
+                        <p>We embed AI thinking into delivery, preparing your organization for the next wave of transformation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Ready to Transform?</h2>
+                    <p>Let's discuss how Yieldly can help you bridge the execution gap in your finance transformation.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@yieldly.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Global Delivery</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="company" name="company" placeholder="Company" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Tell us about your transformation needs" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">Yield<span class="logo-x">ly</span></span>
+                    <p>Revenue Optimisation & Finance Modernisation</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#services">Revenue Optimisation</a></li>
+                            <li><a href="#services">Write Off Reduction</a></li>
+                            <li><a href="#services">Lock Up Solutions</a></li>
+                            <li><a href="#services">AI Integration</a></li>
+                            <li><a href="#services">Finance Modernisation</a></li>
+                            <li><a href="#services">Operation Maturity</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#approach">Approach</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Yieldly. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="website-script.js"></script>
+</body>
+</html> 
