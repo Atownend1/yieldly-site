@@ -776,7 +776,7 @@
                     <li>Full SRA compliance built-in</li>
                 </ul>
                 <div class="hero-buttons">
-                    <a href="#demo" class="btn btn-primary">Start Free Trial</a>
+                    <a class="btn btn-primary" href="#" onclick="openYieldlyWizard(); return false;">Instant Demo</a>
                     <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
                     <button class="btn btn-primary launch-wizard" style="background: var(--success); border-color: var(--success);">Get Detailed Analysis</button>
                 </div>
@@ -1138,5 +1138,10 @@
 
     <!-- Demo Wizard Launcher -->
     <script src="js/wizard-launcher.js"></script>
+    
+    <script>window.dataLayer = window.dataLayer || [];</script>
+    <script src="/public/consent.js" defer></script>
+    <script src="/public/gtm-push.js" defer></script>
+    <script src="/public/modal-wizard.js" defer></script>
 </body>
 </html> 
