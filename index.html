@@ -866,7 +866,7 @@
                     <p>See how much working capital your firm could recover</p>
                 </div>
                 
-                <form class="demo-form" action="https://formspree.io/f/mqalgldy" method="POST">
+                <form class="demo-form" id="contactForm">
                     
                     <div class="form-group">
                         <label for="name">Full Name</label>
@@ -994,16 +994,62 @@
             }
         });
 
-        // Form submission tracking
-        const form = document.querySelector('.demo-form');
+        // Form submission handling
+        const form = document.getElementById('contactForm');
         if (form) {
-            form.addEventListener('submit', function() {
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'generate_lead', {
-                        'event_category': 'engagement',
-                        'event_label': 'demo_request'
-                    });
-                }
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(form);
+                const data = {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    firm: formData.get('firm'),
+                    size: formData.get('size')
+                };
+                
+                // Show loading state
+                const submitBtn = form.querySelector('.submit-btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+                
+                // Submit to Formspree
+                fetch('https://formspree.io/f/mqalgldy', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Show success message
+                    form.innerHTML = `
+                        <div style="text-align: center; padding: 2rem;">
+                            <h3 style="color: var(--success); margin-bottom: 1rem;">Thank you!</h3>
+                            <p>Your request has been submitted successfully. We'll contact you within 24 hours.</p>
+                        </div>
+                    `;
+                    
+                    // Track conversion
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'generate_lead', {
+                            'event_category': 'engagement',
+                            'event_label': 'demo_request'
+                        });
+                    }
+                })
+                .catch(error => {
+                    // Show error message
+                    submitBtn.textContent = 'Error - Try Again';
+                    submitBtn.disabled = false;
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }, 3000);
+                });
             });
         }
 
