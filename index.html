@@ -686,13 +686,7 @@
     </style>
 </head>
 <body>
-    <!-- Hidden form for Netlify -->
-    <form name="demo-request" netlify netlify-honeypot="bot-field" hidden>
-        <input type="text" name="name" />
-        <input type="email" name="email" />
-        <input type="text" name="firm" />
-        <input type="text" name="size" />
-    </form>
+
 
     <!-- Navigation -->
     <nav>
@@ -872,8 +866,7 @@
                     <p>See how much working capital your firm could recover</p>
                 </div>
                 
-                <form class="demo-form" name="demo-request" method="POST" data-netlify="true">
-                    <input type="hidden" name="form-name" value="demo-request" />
+                <form class="demo-form" action="https://formspree.io/f/xayzqjqj" method="POST">
                     
                     <div class="form-group">
                         <label for="name">Full Name</label>
