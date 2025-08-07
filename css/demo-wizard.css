@@ -1,0 +1,298 @@
+/* Demo Wizard Styles */
+
+.wizard-container {
+    background: var(--light-gray);
+    border: 2px solid var(--navy);
+    padding: 0;
+    max-width: 600px;
+    margin: 2rem auto;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.wizard-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 2rem;
+    text-align: center;
+}
+
+.wizard-progress {
+    margin-bottom: 1.5rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--white);
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    font-size: 0.875rem;
+    opacity: 0.9;
+}
+
+.wizard-title {
+    font-family: 'Forum', Georgia, serif;
+    font-size: 1.75rem;
+    margin: 0;
+    color: var(--white);
+}
+
+.wizard-content {
+    padding: 2.5rem;
+}
+
+.wizard-form .form-group {
+    margin-bottom: 1.75rem;
+}
+
+.wizard-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--navy);
+}
+
+.wizard-form input,
+.wizard-form select {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--medium-gray);
+    background: var(--white);
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+}
+
+.wizard-form input:focus,
+.wizard-form select:focus {
+    outline: none;
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(10, 22, 40, 0.1);
+}
+
+.wizard-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.wizard-prev {
+    background: var(--white);
+    color: var(--black);
+    border: 2px solid var(--medium-gray);
+}
+
+.wizard-prev:hover {
+    background: var(--light-gray);
+    border-color: var(--navy);
+}
+
+.wizard-next,
+.wizard-submit {
+    background: var(--navy);
+    color: var(--white);
+    border: 2px solid var(--navy);
+    margin-left: auto;
+}
+
+.wizard-next:hover,
+.wizard-submit:hover {
+    background: var(--black);
+    border-color: var(--black);
+    transform: translateY(-2px);
+}
+
+.wizard-next:disabled,
+.wizard-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Success Message Styles */
+.wizard-success {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.success-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.wizard-success h3 {
+    font-family: 'Forum', Georgia, serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--success);
+}
+
+.wizard-success p {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.success-next-steps {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+    text-align: left;
+}
+
+.success-next-steps h4 {
+    font-family: 'Forum', Georgia, serif;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--navy);
+}
+
+.success-next-steps ul {
+    list-style: none;
+    padding: 0;
+}
+
+.success-next-steps li {
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.success-next-steps li::before {
+    content: '→';
+    color: var(--navy);
+    font-weight: 700;
+    margin-top: 0.1rem;
+}
+
+/* Modal Styles for Wizard */
+.wizard-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.wizard-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wizard-modal .wizard-container {
+    margin: 0;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.wizard-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.wizard-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .wizard-container {
+        margin: 1rem;
+        border-radius: 0;
+    }
+    
+    .wizard-header {
+        padding: 1.5rem;
+    }
+    
+    .wizard-title {
+        font-size: 1.5rem;
+    }
+    
+    .wizard-content {
+        padding: 1.5rem;
+    }
+    
+    .wizard-actions {
+        flex-direction: column;
+    }
+    
+    .wizard-actions .btn {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .wizard-modal {
+        padding: 1rem;
+    }
+    
+    .success-next-steps {
+        padding: 1rem;
+    }
+}
+
+/* Animation for step transitions */
+.wizard-content {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Form validation error styles */
+.wizard-form input.error,
+.wizard-form select.error {
+    border-color: #e74c3c;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+.wizard-form .error-message {
+    color: #e74c3c;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    display: block;
+}
