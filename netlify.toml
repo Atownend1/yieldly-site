@@ -56,11 +56,5 @@
 [context.branch-deploy.environment]
   NODE_ENV = "development"
 
-# Scheduled Functions for Monthly CSV Export
-[[plugins]]
-  package = "@netlify/plugin-scheduled-functions"
-  
-  [plugins.inputs]
-    [plugins.inputs.schedule]
-      [plugins.inputs.schedule.export-blobs]
-        cron = "0 0 1 * *"  # First day of every month at midnight
+# Note: Scheduled functions can be configured via Netlify dashboard
+# or by installing @netlify/plugin-scheduled-functions
