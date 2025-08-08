@@ -1,0 +1,40 @@
+{
+  "name": "yieldly-legal-finance",
+  "version": "1.0.0",
+  "description": "AI-powered cashflow automation for legal practices",
+  "main": "index.html",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'Static site - no build required'",
+    "deploy": "netlify deploy --prod",
+    "test": "playwright test",
+    "lint": "echo 'No linting configured - static site'",
+    "serve": "python3 -m http.server 8080"
+  },
+  "dependencies": {
+    "@netlify/functions": "^2.4.0",
+    "@netlify/blobs": "^6.2.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@lhci/cli": "^0.12.0",
+    "netlify-cli": "^17.0.0"
+  },
+  "keywords": [
+    "legal-finance",
+    "cashflow",
+    "ai",
+    "automation",
+    "netlify",
+    "serverless"
+  ],
+  "author": "AxionX Ltd",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Atownend1/yieldly-site.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -2,7 +2,65 @@
   publish = "."
   command = ""
 
+# API Routes - Route /api/* to Netlify Functions
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# SPA Fallback - Route everything else to index.html
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+# Security Headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://www.clarity.ms https://formspree.io"
+
+# Cache Control for Static Assets
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/public/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# Netlify Functions Configuration
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Environment Variables for Functions
+[context.production.environment]
+  NODE_ENV = "production"
+
+[context.deploy-preview.environment]
+  NODE_ENV = "staging"
+
+[context.branch-deploy.environment]
+  NODE_ENV = "development"
+
+# Scheduled Functions for Monthly CSV Export
+[[plugins]]
+  package = "@netlify/plugin-scheduled-functions"
+  
+  [plugins.inputs]
+    [plugins.inputs.schedule]
+      [plugins.inputs.schedule.export-blobs]
+        cron = "0 0 1 * *"  # First day of every month at midnight

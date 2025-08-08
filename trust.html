@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trust & Privacy - Yieldly Legal Finance Platform</title>
+    <meta name="description" content="Learn about Yieldly's commitment to security, privacy, and compliance. SRA compliant, GDPR compliant, with bank-grade security for legal practices.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=364242249"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '364242249');
+    </script>
+    
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "sraunvj8vm");
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --navy: #0a1628;
+            --light-gray: #f8f8f8;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #333333;
+            --success: #10b981;
+            --blue: #2563eb;
+        }
+
+        body {
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--black);
+            background: var(--white);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Forum', Georgia, serif;
+            font-weight: 400;
+            line-height: 1.3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .nav-bar {
+            background: var(--white);
+            border-bottom: 1px solid var(--medium-gray);
+            padding: 1rem 0;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Forum', Georgia, serif;
+            font-size: 1.75rem;
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--navy);
+        }
+
+        .header {
+            background: var(--navy);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            padding: 3rem 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .trust-card {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--blue);
+        }
+
+        .trust-card h3 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .trust-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .trust-card li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .trust-card li::before {
+            content: '🔒';
+            font-size: 1.2rem;
+        }
+
+        .compliance-section {
+            background: var(--light-gray);
+            padding: 3rem 0;
+        }
+
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .compliance-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid var(--success);
+        }
+
+        .compliance-item h4 {
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .processors-section {
+            padding: 3rem 0;
+        }
+
+        .processor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .processor-item {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .privacy-notice {
+            background: var(--navy);
+            color: var(--white);
+            padding: 3rem 0;
+        }
+
+        .privacy-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .demo-disclaimer {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .demo-disclaimer h3 {
+            color: #856404;
+            margin-bottom: 1rem;
+        }
+
+        .contact-section {
+            background: var(--light-gray);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .btn {
+            background: var(--navy);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            margin: 1rem 0.5rem;
+        }
+
+        .btn:hover {
+            background: var(--black);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--navy);
+            border: 2px solid var(--navy);
+        }
+
+        .btn-secondary:hover {
+            background: var(--light-gray);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="/" class="logo">Yieldly</a>
+                <div class="nav-links">
+                    <a href="/">Home</a>
+                    <a href="/pricing">Pricing</a>
+                    <a href="/#demo">Get Demo</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <h1>Trust & Privacy</h1>
+            <p>Your security and compliance are our top priorities. Learn how we protect your practice and client data.</p>
+        </div>
+    </div>
+
+    <!-- Security Section -->
+    <section class="content-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Bank-Grade Security</h2>
+            
+            <div class="content-grid">
+                <div class="trust-card">
+                    <h3>🔐 Data Encryption</h3>
+                    <ul>
+                        <li>256-bit AES encryption at rest</li>
+                        <li>TLS 1.3 encryption in transit</li>
+                        <li>End-to-end encrypted communications</li>
+                        <li>Hardware security modules (HSMs)</li>
+                    </ul>
+                </div>
+
+                <div class="trust-card">
+                    <h3>🛡️ Access Controls</h3>
+                    <ul>
+                        <li>Multi-factor authentication (MFA)</li>
+                        <li>Role-based access controls</li>
+                        <li>IP whitelisting available</li>
+                        <li>Session timeout protection</li>
+                    </ul>
+                </div>
+
+                <div class="trust-card">
+                    <h3>📊 Monitoring & Auditing</h3>
+                    <ul>
+                        <li>24/7 security monitoring</li>
+                        <li>Comprehensive audit trails</li>
+                        <li>Real-time threat detection</li>
+                        <li>Regular security assessments</li>
+                    </ul>
+                </div>
+
+                <div class="trust-card">
+                    <h3>🏢 Infrastructure</h3>
+                    <ul>
+                        <li>UK and EU data centers only</li>
+                        <li>ISO 27001 certified facilities</li>
+                        <li>Redundant backup systems</li>
+                        <li>99.9% uptime guarantee</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compliance Section -->
+    <section class="compliance-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Regulatory Compliance</h2>
+            
+            <div class="compliance-grid">
+                <div class="compliance-item">
+                    <h4>SRA Compliant</h4>
+                    <p>Full compliance with SRA Accounts Rules and regulatory requirements</p>
+                </div>
+                
+                <div class="compliance-item">
+                    <h4>GDPR Compliant</h4>
+                    <p>Complete GDPR compliance with data subject rights and privacy by design</p>
+                </div>
+                
+                <div class="compliance-item">
+                    <h4>SOC 2 Type II</h4>
+                    <p>Independently audited for security, availability, and confidentiality</p>
+                </div>
+                
+                <div class="compliance-item">
+                    <h4>ISO 27001</h4>
+                    <p>Information security management system certified to international standards</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Processors Section -->
+    <section class="processors-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Trusted Data Processors</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: var(--dark-gray);">
+                We work with industry-leading, compliant service providers to deliver our platform:
+            </p>
+            
+            <div class="processor-grid">
+                <div class="processor-item">Netlify (Hosting)</div>
+                <div class="processor-item">Formspree (Forms)</div>
+                <div class="processor-item">Pipedrive (CRM)</div>
+                <div class="processor-item">SendGrid (Email)</div>
+                <div class="processor-item">Stripe (Payments)</div>
+                <div class="processor-item">Microsoft Clarity</div>
+                <div class="processor-item">Google Analytics</div>
+                <div class="processor-item">Instantly (Outreach)</div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: var(--dark-gray);">
+                All processors are carefully vetted for GDPR compliance and security standards.
+                <br>Full processor details available in our Data Protection Agreement.
+            </p>
+        </div>
+    </section>
+
+    <!-- Demo Disclaimer -->
+    <section class="content-section">
+        <div class="container">
+            <div class="demo-disclaimer">
+                <h3>⚠️ Demo & Trial Data Notice</h3>
+                <p><strong>Important:</strong> Our demo wizard is for evaluation purposes only. Demo data is:</p>
+                <ul style="margin: 1rem 0; padding-left: 2rem;">
+                    <li>Stored locally in your browser only</li>
+                    <li>Automatically deleted after 24 hours</li>
+                    <li>Never transmitted to our servers during demo mode</li>
+                    <li>Used solely for calculation and display purposes</li>
+                </ul>
+                <p>During your 14-day trial, real data processing follows our full privacy and security protocols outlined above.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Notice -->
+    <section class="privacy-notice">
+        <div class="container">
+            <div class="privacy-content">
+                <h2 style="margin-bottom: 2rem;">Privacy Notice Summary</h2>
+                
+                <h3>Lawful Basis for Processing</h3>
+                <p style="margin-bottom: 1.5rem;">
+                    We process your data under <strong>legitimate interest</strong> for service delivery and <strong>consent</strong> for marketing communications. You can withdraw consent at any time.
+                </p>
+                
+                <h3>Your Rights</h3>
+                <p style="margin-bottom: 1.5rem;">
+                    Under GDPR, you have the right to access, rectify, erase, restrict processing, data portability, and object to processing of your personal data.
+                </p>
+                
+                <h3>Data Retention</h3>
+                <p style="margin-bottom: 1.5rem;">
+                    We retain your data for as long as necessary to provide our services, typically 7 years for financial records in compliance with legal requirements.
+                </p>
+                
+                <h3>Contact Our DPO</h3>
+                <p>
+                    For any privacy questions or to exercise your rights, contact our Data Protection Officer at: 
+                    <strong>dpo@axionx.uk</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h2 style="margin-bottom: 2rem;">Questions About Security or Privacy?</h2>
+            <p style="margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Our security and compliance team is happy to answer any questions about our data protection measures, compliance certifications, or privacy practices.
+            </p>
+            
+            <a href="mailto:security@axionx.uk" class="btn">Contact Security Team</a>
+            <a href="mailto:dpo@axionx.uk" class="btn btn-secondary">Contact Data Protection Officer</a>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script>window.dataLayer = window.dataLayer || [];</script>
+    <script src="/public/gtm-push.js" defer></script>
+    
+    <script>
+        // Track page view
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.gtmPush) {
+                window.gtmPush.pushPageView({ page_type: 'trust_privacy' });
+            }
+        });
+        
+        // Track email clicks
+        document.addEventListener('click', function(e) {
+            if (e.target.href && e.target.href.startsWith('mailto:')) {
+                if (window.gtmPush) {
+                    window.gtmPush.pushClickEvent('email_link', e.target.textContent.trim(), e.target.href);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

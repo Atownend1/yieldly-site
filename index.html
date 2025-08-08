@@ -739,7 +739,8 @@
             <ul class="nav-links">
                 <li><a href="#how-it-works">How It Works</a></li>
                 <li><a href="#features">Features</a></li>
-                <li><a href="#results">Results</a></li>
+                <li><a href="/pricing">Pricing</a></li>
+                <li><a href="/trust">Trust</a></li>
                 <li><a href="#demo" class="nav-cta">Get Started</a></li>
             </ul>
             
@@ -751,12 +752,13 @@
         </div>
         
         <div class="mobile-nav-overlay">
-            <ul>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#results">Results</a></li>
-                <li><a href="#demo">Get Started</a></li>
-            </ul>
+                            <ul>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/trust">Trust</a></li>
+                    <li><a href="#demo">Get Started</a></li>
+                </ul>
         </div>
     </nav>
 
@@ -1081,6 +1083,13 @@
                     `;
                     
                     // Track conversion
+                    if (window.gtmPush) {
+                        window.gtmPush.pushLeadGenerated({
+                            source: 'main_form',
+                            form_type: 'demo_request'
+                        });
+                    }
+                    
                     if (typeof gtag !== 'undefined') {
                         gtag('event', 'generate_lead', {
                             'event_category': 'engagement',
@@ -1142,6 +1151,7 @@
     <script>window.dataLayer = window.dataLayer || [];</script>
     <script src="/public/consent.js" defer></script>
     <script src="/public/gtm-push.js" defer></script>
+    <script src="/public/demo-state.js" defer></script>
     <script src="/public/modal-wizard.js" defer></script>
 </body>
 </html> 

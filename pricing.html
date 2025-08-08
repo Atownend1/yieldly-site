@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Yieldly Legal Finance Platform</title>
+    <meta name="description" content="Simple, transparent pricing for legal finance automation. £500/month with 14-day free trial. No setup fees, no long-term contracts.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=364242249"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '364242249');
+    </script>
+    
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "sraunvj8vm");
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --navy: #0a1628;
+            --light-gray: #f8f8f8;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #333333;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--black);
+            background: var(--white);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Forum', Georgia, serif;
+            font-weight: 400;
+            line-height: 1.3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .header {
+            background: var(--navy);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+
+        .pricing-section {
+            padding: 4rem 0;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border: 3px solid var(--navy);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .pricing-badge {
+            background: var(--success);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--navy);
+            margin: 1rem 0;
+        }
+
+        .price-period {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            font-weight: 400;
+        }
+
+        .trial-info {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            font-weight: 600;
+        }
+
+        .features {
+            text-align: left;
+            margin: 2rem 0;
+        }
+
+        .features h3 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--navy);
+        }
+
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--medium-gray);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .features li:last-child {
+            border-bottom: none;
+        }
+
+        .features li::before {
+            content: '✓';
+            background: var(--success);
+            color: var(--white);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .btn {
+            background: var(--navy);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            margin: 1rem 0;
+        }
+
+        .btn:hover {
+            background: var(--black);
+            transform: translateY(-2px);
+        }
+
+        .faq-section {
+            background: var(--light-gray);
+            padding: 4rem 0;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: var(--navy);
+            color: var(--white);
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .nav-bar {
+            background: var(--white);
+            border-bottom: 1px solid var(--medium-gray);
+            padding: 1rem 0;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Forum', Georgia, serif;
+            font-size: 1.75rem;
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--navy);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .price {
+                font-size: 2.5rem;
+            }
+            
+            .pricing-card {
+                margin: 1rem;
+                padding: 2rem 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="/" class="logo">Yieldly</a>
+                <div class="nav-links">
+                    <a href="/">Home</a>
+                    <a href="/trust">Trust & Privacy</a>
+                    <a href="/#demo">Get Demo</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <h1>Simple, Transparent Pricing</h1>
+            <p>One plan that grows with your practice</p>
+        </div>
+    </div>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="pricing-card">
+                <div class="pricing-badge">Most Popular</div>
+                
+                <h2>Professional Plan</h2>
+                <div class="price">£500<span class="price-period">/month</span></div>
+                
+                <div class="trial-info">
+                    <strong>14-day free trial</strong><br>
+                    No setup fees • Cancel anytime
+                </div>
+
+                <div class="features">
+                    <h3>Everything Included</h3>
+                    <ul>
+                        <li>Unlimited invoice processing</li>
+                        <li>AI-powered cashflow analysis</li>
+                        <li>Automated payment reminders</li>
+                        <li>Real-time reporting dashboard</li>
+                        <li>Integration with 20+ platforms</li>
+                        <li>SRA compliance monitoring</li>
+                        <li>Priority email support</li>
+                        <li>Dedicated onboarding specialist</li>
+                        <li>Monthly performance reviews</li>
+                        <li>Custom workflow automation</li>
+                    </ul>
+                </div>
+
+                <button class="btn" onclick="startTrial()" id="start-trial-btn">Start Your 14-Day Free Trial</button>
+                
+                <p style="font-size: 0.9rem; color: var(--dark-gray); margin-top: 1rem;">
+                    No credit card required for trial
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem;">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How does the 14-day free trial work?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Your trial includes full access to all features with your real data. We'll help you integrate with your existing systems and you'll see immediate results. No credit card required to start, and you can cancel anytime during the trial with no obligations.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What integrations are included?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We integrate with all major legal practice management systems including Clio, Osprey, LexisNexis, as well as accounting software like Xero, QuickBooks, and Sage. We also connect with email systems, payment processors, and document management platforms.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Is my data secure and compliant?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely. We're fully SRA compliant with bank-grade security (256-bit encryption), SOC 2 Type II certification, and GDPR compliance. Your data is encrypted both in transit and at rest, with comprehensive audit trails for all activities.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Can I cancel anytime?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, there are no long-term contracts. You can cancel your subscription at any time with 30 days notice. We'll help you export your data and ensure a smooth transition if needed.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What kind of support do you provide?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Every customer gets a dedicated onboarding specialist, priority email support, and monthly performance reviews. We also provide training materials, best practice guides, and proactive monitoring to ensure you're getting maximum value.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How quickly will I see results?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Most firms see immediate improvements in their cashflow visibility within 24 hours of setup. Typically, you'll see 20-30% improvement in collection times within the first month, with full ROI realized within 90 days.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script>window.dataLayer = window.dataLayer || [];</script>
+    <script src="/public/gtm-push.js" defer></script>
+    
+    <script>
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const toggle = element.querySelector('.faq-toggle');
+            
+            // Close other FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').classList.remove('active');
+                    item.querySelector('.faq-toggle').textContent = '+';
+                }
+            });
+            
+            // Toggle current FAQ
+            faqItem.classList.toggle('active');
+            answer.classList.toggle('active');
+            toggle.textContent = faqItem.classList.contains('active') ? '×' : '+';
+            
+            // Track FAQ interaction
+            if (window.gtmPush) {
+                window.gtmPush.pushClickEvent('faq', element.textContent.trim());
+            }
+        }
+        
+        async function startTrial() {
+            const btn = document.getElementById('start-trial-btn');
+            const originalText = btn.textContent;
+            
+            btn.textContent = 'Starting trial...';
+            btn.disabled = true;
+            
+            try {
+                // Track trial start
+                if (window.gtmPush) {
+                    window.gtmPush.pushTrialStart('pricing_page');
+                }
+                
+                // Try to create Stripe checkout if available
+                const response = await fetch('/api/stripe-checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        success_url: window.location.origin + '/success',
+                        cancel_url: window.location.href
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success && data.url) {
+                    // Redirect to Stripe checkout
+                    window.location.href = data.url;
+                } else {
+                    // Fallback to contact form
+                    window.location.href = '/#demo';
+                }
+                
+            } catch (error) {
+                console.error('Trial start error:', error);
+                // Fallback to demo
+                window.location.href = '/#demo';
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        // Track page view
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.gtmPush) {
+                window.gtmPush.pushPageView({ page_type: 'pricing' });
+            }
+        });
+    </script>
+</body>
+</html>

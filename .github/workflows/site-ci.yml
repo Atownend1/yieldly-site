@@ -1,0 +1,393 @@
+name: Yieldly Site CI/CD
+
+on:
+  push:
+    branches: [ main, feat/*, dev ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lighthouse:
+    name: Lighthouse CI
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: |
+        npm init -y
+        npm install -g @lhci/cli@0.12.x
+        
+    - name: Build site
+      run: |
+        # Copy files to build directory
+        mkdir -p build
+        cp -r *.html public css js build/ 2>/dev/null || true
+        
+    - name: Run Lighthouse CI
+      run: |
+        lhci autorun
+      env:
+        LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+        
+  playwright-tests:
+    name: End-to-End Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install Playwright
+      run: |
+        npm init -y
+        npm install -D @playwright/test
+        npx playwright install chromium
+        
+    - name: Create test files
+      run: |
+        mkdir -p tests
+        cat > tests/smoke.spec.js << 'EOF'
+        const { test, expect } = require('@playwright/test');
+        
+        test.describe('Yieldly Site Smoke Tests', () => {
+          
+          test('Homepage loads and displays key elements', async ({ page }) => {
+            await page.goto('/');
+            
+            // Check title
+            await expect(page).toHaveTitle(/Yieldly/);
+            
+            // Check hero section
+            await expect(page.locator('h1')).toContainText('Reduce lock-up');
+            
+            // Check navigation
+            await expect(page.locator('nav')).toBeVisible();
+            
+            // Check CTA buttons
+            await expect(page.locator('.btn')).toHaveCount({ min: 2 });
+          });
+          
+          test('Wizard modal opens on CTA click', async ({ page }) => {
+            await page.goto('/');
+            
+            // Click the wizard CTA button
+            await page.locator('.launch-wizard').first().click();
+            
+            // Check if wizard modal opens
+            await expect(page.locator('#wizard-root')).toBeVisible();
+            
+            // Check wizard title
+            await expect(page.locator('#wizard-title')).toContainText('Legal Finance Demo');
+          });
+          
+          test('Pricing page loads correctly', async ({ page }) => {
+            await page.goto('/pricing');
+            
+            // Check pricing content
+            await expect(page.locator('h1')).toContainText('Pricing');
+            await expect(page.locator('.price')).toContainText('£500');
+            
+            // Check trial button
+            await expect(page.locator('#start-trial-btn')).toBeVisible();
+          });
+          
+          test('Trust page loads correctly', async ({ page }) => {
+            await page.goto('/trust');
+            
+            // Check trust content
+            await expect(page.locator('h1')).toContainText('Trust');
+            await expect(page.locator('.compliance-item')).toHaveCount(4);
+          });
+          
+          test('Demo wizard flow works', async ({ page }) => {
+            await page.goto('/');
+            
+            // Open wizard
+            await page.locator('button[onclick*="openYieldlyWizard"]').first().click();
+            await expect(page.locator('#wizard-root')).toBeVisible();
+            
+            // Step 1: Accept consent
+            await page.locator('#consent-checkbox').check();
+            await page.locator('#wizard-next').click();
+            
+            // Step 2: Use sample data
+            await page.locator('#use-sample-data').click();
+            await page.locator('#wizard-next').click();
+            
+            // Step 3: View analysis (auto-advance)
+            await expect(page.locator('.wizard-content')).toContainText('Overdue');
+            await page.locator('#wizard-next').click();
+            
+            // Step 4: Skip reminder demo
+            await page.locator('#wizard-next').click();
+            
+            // Step 5: Check ROI results
+            await expect(page.locator('.wizard-content')).toContainText('ROI');
+          });
+          
+          test('Form submission works', async ({ page }) => {
+            await page.goto('/#demo');
+            
+            // Fill out the form
+            await page.locator('#name').fill('Test User');
+            await page.locator('#email').fill('test@example.com');
+            await page.locator('#firm').fill('Test Law Firm');
+            await page.locator('#size').selectOption('small');
+            
+            // Submit form
+            await page.locator('.submit-btn').click();
+            
+            // Check for success message (or loading state)
+            await page.waitForSelector('.wizard-content, [class*="success"], [class*="thank"]', { timeout: 10000 });
+          });
+          
+          test('Navigation links work', async ({ page }) => {
+            await page.goto('/');
+            
+            // Test pricing link
+            await page.locator('a[href="/pricing"]').first().click();
+            await expect(page).toHaveURL(/.*pricing/);
+            
+            // Go back and test trust link
+            await page.goto('/');
+            await page.locator('a[href="/trust"]').first().click();
+            await expect(page).toHaveURL(/.*trust/);
+          });
+          
+          test('Mobile responsiveness', async ({ page }) => {
+            // Test mobile viewport
+            await page.setViewportSize({ width: 375, height: 667 });
+            await page.goto('/');
+            
+            // Check mobile menu
+            await expect(page.locator('.mobile-menu')).toBeVisible();
+            
+            // Check content is readable
+            await expect(page.locator('h1')).toBeVisible();
+            await expect(page.locator('.hero-content')).toBeVisible();
+          });
+          
+          test('Performance metrics', async ({ page }) => {
+            // Start measuring
+            await page.goto('/');
+            
+            // Check that JavaScript bundle is reasonable size
+            const responses = [];
+            page.on('response', response => {
+              if (response.url().endsWith('.js')) {
+                responses.push(response);
+              }
+            });
+            
+            await page.reload();
+            
+            // Wait for network to settle
+            await page.waitForLoadState('networkidle');
+            
+            // Basic performance check - page should load quickly
+            const navigationStart = await page.evaluate(() => performance.timing.navigationStart);
+            const loadComplete = await page.evaluate(() => performance.timing.loadEventEnd);
+            const loadTime = loadComplete - navigationStart;
+            
+            expect(loadTime).toBeLessThan(5000); // Should load in under 5 seconds
+          });
+          
+        });
+        EOF
+        
+    - name: Create Playwright config
+      run: |
+        cat > playwright.config.js << 'EOF'
+        module.exports = {
+          testDir: './tests',
+          timeout: 30 * 1000,
+          expect: {
+            timeout: 5000
+          },
+          fullyParallel: true,
+          forbidOnly: !!process.env.CI,
+          retries: process.env.CI ? 2 : 0,
+          workers: process.env.CI ? 1 : undefined,
+          reporter: 'html',
+          use: {
+            baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:8080',
+            trace: 'on-first-retry',
+            screenshot: 'only-on-failure',
+          },
+          projects: [
+            {
+              name: 'chromium',
+              use: {
+                ...require('@playwright/test').devices['Desktop Chrome'],
+              },
+            },
+          ],
+          webServer: {
+            command: 'python3 -m http.server 8080',
+            port: 8080,
+            reuseExistingServer: !process.env.CI,
+          },
+        };
+        EOF
+        
+    - name: Run Playwright tests
+      run: npx playwright test
+      
+    - name: Upload Playwright report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
+
+  bundle-analysis:
+    name: Bundle Size Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Analyze bundle size
+      run: |
+        # Check JavaScript file sizes
+        echo "📊 JavaScript Bundle Analysis"
+        echo "================================"
+        
+        if [ -d "public" ]; then
+          echo "Public JS files:"
+          find public -name "*.js" -exec wc -c {} + | sort -n
+        fi
+        
+        if [ -d "js" ]; then
+          echo "JS files:"
+          find js -name "*.js" -exec wc -c {} + | sort -n
+        fi
+        
+        # Check total bundle size
+        total_js_size=$(find . -name "*.js" -not -path "./node_modules/*" -not -path "./.git/*" -exec wc -c {} + | awk '{sum += $1} END {print sum}')
+        echo "Total JS size: $total_js_size bytes"
+        
+        # Fail if JS bundle is too large (160KB limit)
+        if [ "$total_js_size" -gt 163840 ]; then
+          echo "❌ JavaScript bundle too large: ${total_js_size} bytes (limit: 163840 bytes / 160KB)"
+          exit 1
+        else
+          echo "✅ JavaScript bundle size OK: ${total_js_size} bytes"
+        fi
+        
+        # Check CSS file sizes
+        echo ""
+        echo "📊 CSS Bundle Analysis"
+        echo "======================"
+        
+        if [ -d "css" ]; then
+          echo "CSS files:"
+          find css -name "*.css" -exec wc -c {} + | sort -n
+        fi
+        
+        # Check for inline styles in HTML
+        echo ""
+        echo "📊 Inline Styles Analysis"
+        echo "========================="
+        
+        for html_file in *.html; do
+          if [ -f "$html_file" ]; then
+            style_size=$(grep -o '<style[^>]*>.*</style>' "$html_file" | wc -c)
+            echo "$html_file inline styles: $style_size bytes"
+          fi
+        done
+
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Run security checks
+      run: |
+        echo "🔒 Security Analysis"
+        echo "==================="
+        
+        # Check for hardcoded secrets
+        echo "Checking for potential secrets..."
+        
+        # Look for API keys, tokens, etc.
+        if grep -r -i "api[_-]key\|secret\|token\|password" --include="*.js" --include="*.html" --exclude-dir=node_modules --exclude-dir=.git . | grep -v "your_.*_here" | grep -v "example" | grep -v "placeholder"; then
+          echo "❌ Potential hardcoded secrets found!"
+          exit 1
+        else
+          echo "✅ No hardcoded secrets detected"
+        fi
+        
+        # Check for console.log statements in production files
+        echo "Checking for debug statements..."
+        if grep -r "console\.log\|console\.debug" --include="*.js" --exclude="*test*" --exclude="*spec*" --exclude-dir=node_modules . | grep -v "// DEBUG" | head -5; then
+          echo "⚠️  Debug statements found - consider removing for production"
+        else
+          echo "✅ No debug statements found"
+        fi
+        
+        # Check for proper HTTPS usage
+        echo "Checking for HTTP references..."
+        if grep -r "http://" --include="*.js" --include="*.html" --exclude-dir=node_modules . | grep -v "localhost" | grep -v "127.0.0.1"; then
+          echo "⚠️  HTTP references found - ensure HTTPS is used in production"
+        else
+          echo "✅ No insecure HTTP references found"
+        fi
+
+  deploy-preview:
+    name: Deploy Preview
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Deploy to Netlify Preview
+      run: |
+        echo "🚀 Deploying preview to Netlify"
+        echo "================================"
+        echo "Preview URL will be available in Netlify dashboard"
+        echo "Branch: ${{ github.head_ref }}"
+        echo "Commit: ${{ github.sha }}"
+        
+        # In a real setup, you would use Netlify CLI here
+        # npm install -g netlify-cli
+        # netlify deploy --dir=. --site=${{ secrets.NETLIFY_SITE_ID }} --auth=${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+  notify-success:
+    name: Notify Success
+    runs-on: ubuntu-latest
+    needs: [lighthouse, playwright-tests, bundle-analysis, security-scan]
+    if: success()
+    
+    steps:
+    - name: Success notification
+      run: |
+        echo "✅ All checks passed!"
+        echo "===================="
+        echo "✅ Lighthouse CI: Passed"
+        echo "✅ Playwright Tests: Passed"  
+        echo "✅ Bundle Analysis: Passed"
+        echo "✅ Security Scan: Passed"
+        echo ""
+        echo "🚀 Ready for deployment!"
