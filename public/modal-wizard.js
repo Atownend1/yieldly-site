@@ -471,17 +471,50 @@ class LegalFinanceWizard {
     }
     
     loadSampleData() {
-        const sampleInvoices = [
-            { invoice_number: 'INV-2024-001', client_name: 'Smith & Partners Ltd', amount: 2500, due_date: '2024-01-15', status: 'overdue' },
-            { invoice_number: 'INV-2024-002', client_name: 'Global Corp', amount: 5000, due_date: '2024-01-20', status: 'overdue' },
-            { invoice_number: 'INV-2024-003', client_name: 'Local Business', amount: 1200, due_date: '2024-02-01', status: 'paid' },
-            { invoice_number: 'INV-2024-004', client_name: 'Tech Startup', amount: 3500, due_date: '2024-01-10', status: 'overdue' },
-            { invoice_number: 'INV-2024-005', client_name: 'Family Law Client', amount: 800, due_date: '2024-02-15', status: 'pending' }
-        ];
+        const sampleInvoices = this.generateSampleData();
         
         this.storeInvoices(sampleInvoices);
         const statusDiv = document.getElementById('upload-status');
         statusDiv.innerHTML = '<p style="color: green;">✅ Sample data loaded successfully</p>';
+    }
+    
+    generateSampleData() {
+        const today = new Date();
+        const clients = ['ABC Corp', 'XYZ Ltd', 'Tech Solutions', 'Global Services', 'Prime Industries', 'Smith & Partners Ltd', 'Global Corp', 'Local Business', 'Tech Startup', 'Family Law Client'];
+        
+        const sampleInvoices = [];
+        
+        // Generate 20 invoices ensuring some are overdue
+        for (let i = 1; i <= 20; i++) {
+            const amount = Math.floor(Math.random() * 9000) + 1000;
+            let dueDate = new Date(today);
+            let status;
+            
+            if (i <= 5) {
+                // First 5 invoices: guaranteed overdue for demo
+                dueDate.setDate(today.getDate() - (10 + i * 5)); // 15-35 days overdue
+                status = 'overdue';
+            } else if (i <= 10) {
+                // Next 5: pending
+                dueDate.setDate(today.getDate() + Math.floor(Math.random() * 30));
+                status = 'pending';
+            } else {
+                // Rest: mix of paid and pending
+                dueDate.setDate(today.getDate() - Math.floor(Math.random() * 60) + 30);
+                status = Math.random() < 0.5 ? 'paid' : 'pending';
+            }
+            
+            sampleInvoices.push({
+                invoice_number: `INV-${String(i).padStart(4, '0')}`,
+                client_name: clients[Math.floor(Math.random() * clients.length)],
+                amount: amount,
+                due_date: dueDate.toISOString().split('T')[0],
+                status: status,
+                isOverdue: this.isOverdue(dueDate.toISOString().split('T')[0], status)
+            });
+        }
+        
+        return sampleInvoices;
     }
     
     parseCSV(csvText) {

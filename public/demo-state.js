@@ -360,29 +360,34 @@ function generateSessionId() {
  * Sample data generator
  */
 function generateSampleInvoices() {
-    const sampleClients = [
-        'Smith & Partners Ltd', 'Global Corp', 'Local Business Solutions',
-        'Tech Startup Inc', 'Family Law Associates', 'Property Development Co',
-        'Manufacturing Ltd', 'Retail Chain PLC', 'Construction Group',
-        'Healthcare Services'
-    ];
+    const today = new Date();
+    const clients = ['ABC Corp', 'XYZ Ltd', 'Tech Solutions', 'Global Services', 'Prime Industries', 'Smith & Partners Ltd', 'Global Corp', 'Local Business', 'Tech Startup', 'Family Law Client'];
     
     const invoices = [];
-    const today = new Date();
     
-    for (let i = 0; i < 15; i++) {
-        const daysOffset = Math.floor(Math.random() * 120) - 60; // ±60 days
-        const dueDate = new Date(today.getTime() + daysOffset * 24 * 60 * 60 * 1000);
-        const amount = Math.floor(Math.random() * 8000) + 500; // £500-£8500
-        const client = sampleClients[Math.floor(Math.random() * sampleClients.length)];
+    // Generate 20 invoices ensuring some are overdue
+    for (let i = 1; i <= 20; i++) {
+        const amount = Math.floor(Math.random() * 9000) + 1000;
+        let dueDate = new Date(today);
+        let status;
         
-        let status = 'pending';
-        if (Math.random() < 0.2) status = 'paid';
-        else if (dueDate < today && Math.random() < 0.7) status = 'overdue';
+        if (i <= 5) {
+            // First 5 invoices: guaranteed overdue for demo
+            dueDate.setDate(today.getDate() - (10 + i * 5)); // 15-35 days overdue
+            status = 'overdue';
+        } else if (i <= 10) {
+            // Next 5: pending
+            dueDate.setDate(today.getDate() + Math.floor(Math.random() * 30));
+            status = 'pending';
+        } else {
+            // Rest: mix of paid and pending
+            dueDate.setDate(today.getDate() - Math.floor(Math.random() * 60) + 30);
+            status = Math.random() < 0.5 ? 'paid' : 'pending';
+        }
         
         invoices.push({
-            invoice_number: `INV-2024-${String(i + 1).padStart(3, '0')}`,
-            client_name: client,
+            invoice_number: `INV-${String(i).padStart(4, '0')}`,
+            client_name: clients[Math.floor(Math.random() * clients.length)],
             amount: amount,
             due_date: dueDate.toISOString().split('T')[0],
             status: status,
