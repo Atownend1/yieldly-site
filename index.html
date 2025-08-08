@@ -726,6 +726,172 @@
         .wizard-close:hover {
             background: rgba(255, 255, 255, 0.1);
         }
+
+        /* Demo Wizard Modal Styles */
+        .wizard-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .wizard-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+        }
+
+        .wizard-container {
+            position: relative;
+            background: var(--white);
+            border: 2px solid var(--navy);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 720px;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .wizard-header {
+            background: var(--navy);
+            color: var(--white);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--navy);
+        }
+
+        .wizard-header h2 {
+            margin: 0;
+            font-family: 'Forum', Georgia, serif;
+            font-size: 1.5rem;
+        }
+
+        .wizard-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .wizard-close:hover,
+        .wizard-close:focus {
+            background: rgba(255, 255, 255, 0.1);
+            outline: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .wizard-content {
+            padding: 2rem;
+            flex: 1;
+            overflow-y: auto;
+            min-height: 300px;
+        }
+
+        .wizard-footer {
+            padding: 1.5rem 2rem;
+            border-top: 1px solid var(--medium-gray);
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            background: var(--light-gray);
+        }
+
+        .wizard-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            min-width: 100px;
+        }
+
+        .wizard-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .wizard-btn-primary {
+            background: var(--navy);
+            color: var(--white);
+            border-color: var(--navy);
+        }
+
+        .wizard-btn-primary:hover:not(:disabled) {
+            background: var(--black);
+            border-color: var(--black);
+        }
+
+        .wizard-btn-secondary {
+            background: var(--white);
+            color: var(--navy);
+            border-color: var(--navy);
+        }
+
+        .wizard-btn-secondary:hover:not(:disabled) {
+            background: var(--light-gray);
+        }
+
+        .wizard-step {
+            display: none;
+        }
+
+        .wizard-step.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Accessibility improvements */
+        .wizard-modal:focus-within .wizard-container {
+            outline: 3px solid var(--navy);
+            outline-offset: 2px;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .wizard-container {
+                max-width: 95vw;
+                margin: 0.5rem;
+            }
+            
+            .wizard-content {
+                padding: 1.5rem;
+            }
+            
+            .wizard-footer {
+                padding: 1rem;
+                flex-direction: column;
+            }
+            
+            .wizard-btn {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -997,9 +1163,27 @@
                 <div>&copy; 2024 Yieldly. Part of AxionX Ltd. All rights reserved.</div>
                 <div>Made with precision in London.</div>
             </div>
-        </div>
+            </div>
     </footer>
-
+    
+    <!-- Demo Wizard Modal -->
+    <div id="wizard-root" class="wizard-modal" style="display: none;" role="dialog" aria-labelledby="wizard-title" aria-modal="true">
+        <div class="wizard-overlay" aria-hidden="true"></div>
+        <div class="wizard-container">
+            <div class="wizard-header">
+                <h2 id="wizard-title">Legal Finance Demo</h2>
+                <button class="wizard-close" aria-label="Close demo wizard" type="button">&times;</button>
+            </div>
+            <div class="wizard-content" id="wizard-content">
+                <!-- Wizard steps will be injected here -->
+            </div>
+            <div class="wizard-footer">
+                <button type="button" class="wizard-btn wizard-btn-secondary" id="wizard-back" style="display: none;">Back</button>
+                <button type="button" class="wizard-btn wizard-btn-primary" id="wizard-next">Next</button>
+            </div>
+        </div>
+    </div>
+    
     <script>
         // Mobile Navigation
         const mobileMenu = document.querySelector('.mobile-menu');
@@ -1145,13 +1329,13 @@
         });
     </script>
 
-    <!-- Demo Wizard Launcher -->
-    <script src="js/wizard-launcher.js"></script>
-    
     <script>window.dataLayer = window.dataLayer || [];</script>
     <script src="/public/consent.js" defer></script>
     <script src="/public/gtm-push.js" defer></script>
     <script src="/public/demo-state.js" defer></script>
     <script src="/public/modal-wizard.js" defer></script>
+    
+    <!-- Demo Wizard Launcher (load after modal-wizard.js) -->
+    <script src="js/wizard-launcher.js" defer></script>
 </body>
 </html> 
